@@ -1,0 +1,25 @@
+<!-- this is an included partial, so no "main" block defintion -->
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title"><a href="{{.Site.BaseURL}}">{{ .Site.Title }}</a></h1>
+            {{- if isset .Site.Params "description" }}
+            <h2 class="subtitle">{{ .Site.Params.description }}</h2>
+            {{- end }}
+        </div>
+    </div>
+</section>
+<div class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand"><a href="{{ .Site.BaseURL }}" class="navbar-item">Flypenguin</a></div>
+        <div id="navbar-main" class="navbar-menu">
+            <div class="navbar-start">
+                <a href="{{ .Site.BaseURL }}" class="navbar-item">Home</a>
+                <a href="/tags" class="navbar-item">Tags</a>
+                {{- range .Site.Sections }}
+                <a href="{{ .RelPermalink }}" class="navbar-item">{{ .Name }}</a>
+                {{- end }}
+            </div>
+        </div>
+    </div>
+</div>

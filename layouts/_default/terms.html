@@ -1,0 +1,63 @@
+{{ define "main" }}
+<div class="section">
+    <div class="container">
+        <div class="content">
+
+            {{ if (eq .Type "tags")}}
+
+            <div id="tag-cloud">
+                {{ if (eq (len .Data.Terms) 0) }}
+                <div class="tag-cloud-title">
+                    No tags
+                </div>
+                {{ end }}
+                <div class="tag-cloud-tags">
+                    <!-- based on https://mertbakir.gitlab.io/hugo/tag-cloud-in-hugo/ -->
+                    {{- $sizeMin := 1.0 }}
+                    {{- $sizeMax := 3.0}}
+                    {{- $fontSpread := sub $sizeMax $sizeMin }}
+                    {{- $maxPosts := add (len (index $.Site.Taxonomies.tags.ByCount 0).Pages) }}
+                    {{- $minPosts := len (index $.Site.Taxonomies.tags.ByCount.Reverse 0).Pages }}
+                    {{- $spread := sub $maxPosts $minPosts }}
+
+                    {{- range $name, $taxonomy := $.Site.Taxonomies.tags }}
+                    {{- $tagCount := len $taxonomy.Pages }}
+                    <!-- factor = 0..1 = ((log(count) - log(min)) / (log(max) - log(min)) -->
+                    {{- $weight := div (sub (math.Log $tagCount) (math.Log $minPosts)) (sub (math.Log $maxPosts)
+                    (math.Log
+                    $minPosts))}}
+                    {{- $currentFontSize := (add $sizeMin (mul $fontSpread $weight)) }}
+                    {{- $href := printf "/tags/%s" (urlize $name) }}
+                    <a href="{{ $href }}" class="tagcloud-item" style="font-size: {{ $currentFontSize }}rem;">
+                        {{ $name }}<sup>{{ $tagCount }}</sup>
+                    </a>
+                    {{- end }}
+                </div>
+            </div>
+
+            {{ else if (eq .Type "categories")}}
+
+            <div id="categories">
+                {{ if (eq (len .Data.Terms) 0) }}
+                <div class="category-list-title">
+                    No categories
+                </div>
+                {{ end }}
+                <div class="category-list">
+                    <ul class="category-list">
+                        {{ range .Data.Terms.Alphabetical }}
+                        <li class="category-list-item">
+                            <a class="category-list-link" href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
+                            <span class="category-list-count">{{ .Count }}</span>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+
+            {{ end }}
+
+        </div>
+    </div>
+</div>
+{{ end }}

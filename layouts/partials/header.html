@@ -1,35 +1,17 @@
 <!-- this is an included partial, so no "main" block defintion -->
-<section class="hero is-primary">
-    <div class="hero-body">
-        <div class="container">
-            <h1 class="title"><a href="{{.Site.BaseURL}}">{{ .Site.Title }}</a></h1>
-            {{- if isset .Site.Params "description" }}
-            <h2 class="subtitle">{{ .Site.Params.description }}</h2>
-            {{- end }}
-        </div>
-    </div>
-</section>
-<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-    <div class="container">
-        <div class="navbar-brand">
-            <a href="{{ .Site.BaseURL }}" class="navbar-item">Flypenguin</a>
-            <!-- do NOT leave that out, the navbar will be replaced by a hamburger
-                 on touch devicese, and _THIS IS THE HAMBURGER_ ... ;) -->
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-main">
-                <!-- each span is a "line" of the burger ... https://is.gd/7NOieE -->
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-        <div id="navbar-main" class="navbar-menu">
-            <div class="navbar-start">
-                <a href="{{ .Site.BaseURL }}" class="navbar-item">Home</a>
-                <a href="/tags" class="navbar-item">Tags</a>
-                {{- range .Site.Sections }}
-                <a href="{{ .RelPermalink }}" class="navbar-item">{{ .Name }}</a>
-                {{- end }}
-            </div>
-        </div>
+<nav class="sans-serif bg-light-gray">
+    <a class="pt3 pt4-ns link dark-gray b f-headline tc db " href="{{ .Site.BaseURL }}"
+        title="{{.Site.Title}}">{{.Site.Title}}</a>
+    {{- if isset .Site.Params "description" }}
+    <h2 class="tc f3">{{ .Site.Params.description }}</h2>
+    {{- end }}
+    <div class="tc mt3 mb3 bg-gray">
+        <a class="link black f6 f3-ns dib pa3 hover-bg-orange" href="{{ .Site.BaseURL }}" title="Home">Home</a>
+        <a class="link black f6 f3-ns dib pa3 hover-bg-orange" href="/tags" title="Tags">Tags</a>
+        {{- range .Site.Sections }}
+        <a class="link black f6 f3-ns dib pa3 hover-bg-orange" href="{{ .RelPermalink }}" title="{{.Name}}">{{
+            .Name
+            }}</a>
+        {{- end }}
     </div>
 </nav>

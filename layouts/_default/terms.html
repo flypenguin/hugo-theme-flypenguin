@@ -16,7 +16,7 @@
                     {{- $sizeMin := 1.0 }}
                     {{- $sizeMax := 3.0}}
                     {{- $fontSpread := sub $sizeMax $sizeMin }}
-                    {{- $maxPosts := add (len (index $.Site.Taxonomies.tags.ByCount 0).Pages) }}
+                    {{- $maxPosts := len (index $.Site.Taxonomies.tags.ByCount 0).Pages }}
                     {{- $minPosts := len (index $.Site.Taxonomies.tags.ByCount.Reverse 0).Pages }}
                     {{- $spread := sub $maxPosts $minPosts }}
 

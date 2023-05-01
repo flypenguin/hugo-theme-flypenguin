@@ -10,7 +10,7 @@
                 <div class="tag-cloud-title">
                     No tags
                 </div>
-                {{- end }}
+                {{- else }}
                 <div class="tag-cloud-tags">
                     <!-- based on https://mertbakir.gitlab.io/hugo/tag-cloud-in-hugo/ -->
                     {{- $sizeMin := 1.0 }}
@@ -32,6 +32,7 @@
                     </a>
                     {{- end }}
                 </div>
+                {{- end }}
             </div>
 
             {{- else if (eq .Type "categories")}}

@@ -15,6 +15,7 @@ Thanks (at least) to:
 - [x] something is working
 - [x] navbar auto-fills with sections
 - [x] tag word cloud
+- [x] make navbar work on mobile devices ...
 - [ ] add my comment engine
 - [ ] headings for "tag" list pages
 - [ ] footer

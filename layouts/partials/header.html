@@ -9,9 +9,19 @@
         </div>
     </div>
 </section>
-<div class="navbar is-dark" role="navigation" aria-label="main navigation">
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="container">
-        <div class="navbar-brand"><a href="{{ .Site.BaseURL }}" class="navbar-item">Flypenguin</a></div>
+        <div class="navbar-brand">
+            <a href="{{ .Site.BaseURL }}" class="navbar-item">Flypenguin</a>
+            <!-- do NOT leave that out, the navbar will be replaced by a hamburger
+                 on touch devicese, and _THIS IS THE HAMBURGER_ ... ;) -->
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-main">
+                <!-- each span is a "line" of the burger ... https://is.gd/7NOieE -->
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
         <div id="navbar-main" class="navbar-menu">
             <div class="navbar-start">
                 <a href="{{ .Site.BaseURL }}" class="navbar-item">Home</a>
@@ -22,4 +32,4 @@
             </div>
         </div>
     </div>
-</div>
+</nav>

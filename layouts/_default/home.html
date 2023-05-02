@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="content">
+                    {{.Content}}
+                </div>
+            </div>
+            <div class="column">
+                <div class="content has-background-grey-lighter br15 pa10r">
+                    <strong>Most recent posts:</strong>
+                    {{- $posts := where site.RegularPages "Type" "in" site.Params.mainSections }}
+                    {{- $sortedPosts := sort $posts "Date" "desc" }}
+                    <ul class="post-list">
+                        {{ range (first (or .Site.Params.postsOnHomepage 5) $sortedPosts) }}
+                        <li><a href="{{.RelPermalink}}">{{ .Title }}</a> ({{.Date.Format "Jan 02, 2006"}})
+                        </li>
+                        {{ end }}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}

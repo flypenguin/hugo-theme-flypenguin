@@ -26,7 +26,7 @@
             <div class="navbar-start">
                 <a href="{{ .Site.BaseURL }}" class="navbar-item">Home</a>
                 <a href="/tags" class="navbar-item">Tags</a>
-                {{- range .Site.Sections }}
+                {{- range site.Sections }}
                 <a href="{{ .RelPermalink }}" class="navbar-item">{{ .Name }}</a>
                 {{- end }}
             </div>
